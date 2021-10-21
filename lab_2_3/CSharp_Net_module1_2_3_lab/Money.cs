@@ -7,60 +7,236 @@ using System.Threading.Tasks;
 namespace CSharp_Net_module1_2_3_lab
 {
     // 1) declare enumeration CurrencyTypes, values UAH, USD, EU
-    enum CurrencyTypes
+    public enum CurrencyTypes 
     {
+        Unknown,
         UAH,
         USD,
         EU
     }
-
     class Money
     {
         // 2) declare 2 properties Amount, CurrencyType
         public double Amount { get; set; }
-        public CurrencyTypes CurrencyType;
+        public CurrencyTypes CurrencyType { get; set; }
         // 3) declare parameter constructor for properties initialization
-        public Money(double Amount, CurrencyTypes CurrencyType)
+        public Money(double _Amount, CurrencyTypes _CurrencyType)
         {
-            double _amount = Amount;
-            CurrencyTypes _currencyType = CurrencyType;
+            Amount = _Amount;
+            CurrencyType = _CurrencyType;
         }
         // 4) declare overloading of operator + to add 2 objects of Money
         public static Money operator +(Money m1, Money m2)
         {
-            return new Money(m1.Amount + m2.Amount, m1.CurrencyType);
+            if (m2.CurrencyType == CurrencyTypes.UAH)
+            {
+                m1.Amount += m2.Amount;
+
+            }
+            if (m2.CurrencyType == CurrencyTypes.USD)
+            {
+                m1.Amount += (m2.Amount * 26.3);
+
+            }
+            if (m2.CurrencyType == CurrencyTypes.EU)
+            {
+                m1.Amount += (m2.Amount * 30.5);
+            }
+            return m1;
         }
         // 5) declare overloading of operator -- to decrease object of Money by 1
-
-        // 6) declare overloading of operator * to increase object of Money 3 times
-
-        // 7) declare overloading of operator > and < to compare 2 objects of Money
-
-        // 8) declare overloading of operator true and false to check CurrencyType of object
-
-        // 9) declare overloading of implicit/ explicit conversion  to convert Money to double, string and vice versa
-        /*public static AddToBalance(double amount, CurrencyTypes type)
+        public static Money operator -(Money m1, Money m2)
         {
-            if (type == CurrencyTypes.UAH)
+            if (m2.CurrencyType == CurrencyTypes.UAH)
             {
-                Money.Amount = Money.Amount + amount;
-                return 
+                m1.Amount -= m2.Amount;
+
             }
-            if (this.CurrencyType == CurrencyTypes.USD)
+            if (m2.CurrencyType == CurrencyTypes.USD)
             {
-                this.Amount = this.Amount + (amount * 26.3);
-                
+                m1.Amount -= (m2.Amount * 26.3);
+
             }
-            if (this.CurrencyType == CurrencyTypes.EU)
+            if (m2.CurrencyType == CurrencyTypes.EU)
             {
-                this.Amount = this.Amount + (amount * 30.5);
+                m1.Amount -= (m2.Amount * 30.5);
+            }
+            return m1;
+        }
+        // 6) declare overloading of operator * to increase object of Money 3 times
+        public static Money operator *(Money m1, Money m2)
+        {
+            if (m2.CurrencyType == CurrencyTypes.UAH)
+            {
+                m1.Amount *= m2.Amount;
+
+            }
+            if (m2.CurrencyType == CurrencyTypes.USD)
+            {
+                m1.Amount *= (m2.Amount * 26.3);
+
+            }
+            if (m2.CurrencyType == CurrencyTypes.EU)
+            {
+                m1.Amount *= (m2.Amount * 30.5);
+            }
+            return m1;
+        }
+        public static Money operator *( Money m1, double m2)
+        {
+            m1.Amount *= m2;
+            return m1;
+        }
+        // 7) declare overloading of operator > and < to compare 2 objects of Money
+        public static bool operator > (Money m1, Money m2)
+        {
+            bool status;
+            if (m1.Amount > m2.Amount && m2.CurrencyType == CurrencyTypes.UAH)
+            {
+                status = true;
+                return status;
+            }            
+            if (m2.CurrencyType == CurrencyTypes.USD)
+            {
+                m2.Amount *= 26.3;
+                if (m1.Amount > m2.Amount)
+                {
+                    status = true;
+                }
+                else
+                {
+                    status = false;
+                }
+                return status;
+            }            
+            if (m2.CurrencyType == CurrencyTypes.EU)
+            {
+                m2.Amount *=30.5;
+                if (m1.Amount > m2.Amount)
+                {
+                    status = true;
+                }
+                else
+                {
+                    status = false;
+                }
+                return status;                
             }
             else
             {
-                Console.WriteLine("Wrong Currency");
+                status = false;
             }
+            return status;
+        }            
+        public static bool operator <(Money m1, Money m2)
+        {
+            bool status;
+            if (m1.Amount < m2.Amount && m2.CurrencyType == CurrencyTypes.UAH)
+            {
+                status = true;
+            }            
+            else if (m2.CurrencyType == CurrencyTypes.USD)
+            {
+                m2.Amount *= 26.3;
+                if (m1.Amount < m2.Amount)
+                {
+                    status = true;                    
+                }
+                else
+                {
+                    status = false;
+                }
+                return status;
+            }            
+            else if (m2.CurrencyType == CurrencyTypes.EU)
+            {
+                m2.Amount *= 30.5;
+                if (m1.Amount < m2.Amount)
+                {
+                    status = true;                    
+                }
+                else
+                {
+                    status = false;
+                }
+                return status;
+            }
+            else
+            {
+                status = false;
+                
+            }
+            return status;
 
-        }*/
+        }
+        // 8) метод void AddToBalance(float amount, CurrencyType type); - який докидує в гаманець потрібну кількість грошей потрібної валюти
+        public void AddToBalance(Money m1, Money m2)
+        {
+            if (m2.CurrencyType == CurrencyTypes.UAH)
+            {
+                m1.Amount += m2.Amount;
 
+            }
+            if (m2.CurrencyType == CurrencyTypes.USD)
+            {
+                m1.Amount += (m2.Amount * 26.3);
+
+            }
+            if (m2.CurrencyType == CurrencyTypes.EU)
+            {
+                m1.Amount += (m2.Amount * 30.5);
+            }            
+        }
+        // 9) метод void RemoveFromBalance(float amount, CurrencyType type); - який забирає з гаманця потрібну кількість грошей у вказаній валюті 
+        public void RemoveFromBalance(double _Amount, CurrencyTypes _CurrencyType)
+        {
+            if (_CurrencyType == CurrencyTypes.UAH)
+            {
+                Amount -= _Amount;
+            }
+            else if (_CurrencyType == CurrencyTypes.USD)
+            {
+                Amount -= _Amount * 26.3;
+            }
+            else if (_CurrencyType == CurrencyTypes.EU)
+            {
+                Amount -= _Amount * 30.5;
+            }
+            else
+            {
+                Console.WriteLine("Wrong currency");
+            }
+        }
+
+        // 10) метод float GetBalance(CurrencyType type); - повертає кількість грошей у вказаній валюті
+        public double GetBalance(CurrencyTypes _CurrencyType)
+        {
+            if (_CurrencyType == CurrencyTypes.UAH)
+            {
+                return Amount;
+            }
+            else if (_CurrencyType == CurrencyTypes.USD)
+            {
+                Amount /= 26.3;
+                return Amount;
+            }
+            else if (_CurrencyType == CurrencyTypes.EU)
+            {
+                Amount /=  30.5;
+                return Amount;
+            }
+            else
+            {
+                Console.WriteLine("Wrong currency");
+            }
+            return Amount;
+        }
+
+        // 11) метод void SetCourse(float course, CurrencyType type) - який встановлює курс обміну відносно гривні
+        public void SetCourse(double _Course, CurrencyTypes _CurrencyType)
+        {
+            CurrencyType = _CurrencyType;
+            Amount *= _Course;            
+        }
     }
 }
