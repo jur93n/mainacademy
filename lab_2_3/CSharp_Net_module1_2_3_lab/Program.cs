@@ -37,7 +37,7 @@ namespace CSharp_Net_module1_2_3_lab
             Console.WriteLine($"Your UAH balance is: {BalanceUAH.Amount} {BalanceUAH.CurrencyType}");
             Console.WriteLine($"Your USD balance is: {BalanceUSD.Amount} {BalanceUSD.CurrencyType}");
             bool status = BalanceUAH > BalanceUSD;
-            if (status == true)
+            if (status)
             {
                 Console.WriteLine("UAH balance > USD Balance");
             }

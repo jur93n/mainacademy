@@ -17,8 +17,10 @@ namespace CSharp_Net_module1_2_3_lab
     class Money
     {
         // 2) declare 2 properties Amount, CurrencyType
-        public double Amount { get; set; }
-        public CurrencyTypes CurrencyType { get; set; }
+        public double Amount { get; private set; }
+        public CurrencyTypes CurrencyType { get; private set; }
+        //тут можна зробити 2 приватні змінні з курсом для євро і долара і через методи їм встановлювати нові значення
+
         // 3) declare parameter constructor for properties initialization
         public Money(double _Amount, CurrencyTypes _CurrencyType)
         {
@@ -91,7 +93,7 @@ namespace CSharp_Net_module1_2_3_lab
         public static bool operator > (Money m1, Money m2)
         {
             bool status;
-            if (m1.Amount > m2.Amount && m2.CurrencyType == CurrencyTypes.UAH)
+            if (m2.CurrencyType == CurrencyTypes.UAH && m1.Amount > m2.Amount)
             {
                 status = true;
                 return status;
@@ -122,10 +124,7 @@ namespace CSharp_Net_module1_2_3_lab
                 }
                 return status;                
             }
-            else
-            {
-                status = false;
-            }
+            status = false;
             return status;
         }            
         public static bool operator <(Money m1, Money m2)
@@ -170,21 +169,21 @@ namespace CSharp_Net_module1_2_3_lab
 
         }
         // 8) метод void AddToBalance(float amount, CurrencyType type); - який докидує в гаманець потрібну кількість грошей потрібної валюти
-        public void AddToBalance(Money m1, Money m2)
+        public void AddToBalance(Money m2) //тут лилити лиш другий гаманець так як ти вже знаходишся в першому гаманці
         {
             if (m2.CurrencyType == CurrencyTypes.UAH)
             {
-                m1.Amount += m2.Amount;
+                Amount += m2.Amount;
 
             }
             if (m2.CurrencyType == CurrencyTypes.USD)
             {
-                m1.Amount += (m2.Amount * 26.3);
+                Amount += (m2.Amount * 26.3);
 
             }
             if (m2.CurrencyType == CurrencyTypes.EU)
             {
-                m1.Amount += (m2.Amount * 30.5);
+                Amount += (m2.Amount * 30.5);
             }            
         }
         // 9) метод void RemoveFromBalance(float amount, CurrencyType type); - який забирає з гаманця потрібну кількість грошей у вказаній валюті 
@@ -233,7 +232,7 @@ namespace CSharp_Net_module1_2_3_lab
         }
 
         // 11) метод void SetCourse(float course, CurrencyType type) - який встановлює курс обміну відносно гривні
-        public void SetCourse(double _Course, CurrencyTypes _CurrencyType)
+        public void SetCourse(double _Course, CurrencyTypes _CurrencyType) //ніпалучилось ))
         {
             CurrencyType = _CurrencyType;
             Amount *= _Course;            
