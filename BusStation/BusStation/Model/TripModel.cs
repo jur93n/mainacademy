@@ -1,4 +1,5 @@
 using System;
+
 namespace BusStation.Model
 {
     public class TripModel
@@ -19,7 +20,7 @@ namespace BusStation.Model
         public string TripTo { get; }
         public BusModel Bus { get; }
         public double TicketPrice { get; }
-        public TripModel( int id, DateTime departureTime, string tripFrom, DateTime arrivalTime, string tripTo, BusModel bus, double ticketPrice)
+        public TripModel(int id, DateTime departureTime, string tripFrom, DateTime arrivalTime, string tripTo, BusModel bus, double ticketPrice)
         {
             Id = id;
             DepartureTime = departureTime;
@@ -28,7 +29,7 @@ namespace BusStation.Model
             TripTo = tripTo;
             Bus = bus;
             TicketPrice = ticketPrice;
-        }
-
+        }        
     }
+    
 }

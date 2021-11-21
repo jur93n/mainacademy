@@ -11,12 +11,17 @@ namespace BusStation.Controller
     public class MainController
     {
         private readonly InputComponent _input;
-        private readonly MainMenuController _menuController;        
+        private readonly MainMenuController _menuController;
+        private readonly TripsStorage _tripsStorage;
+        private readonly MainMenuView _menuView;
+
         public MainController()
         {
             _input = new InputComponent();
             _menuController = new MainMenuController();
+            _menuView = new MainMenuView();
         }
+
         public void Run()
         {            
             _menuController.ShowMainMenu();
@@ -29,26 +34,27 @@ namespace BusStation.Controller
                 case 2:
                     _menuController.FindTripById();
                     break;
-                /*case 3:
+                case 3:
                     _menuController.FindTripByDest();
+                    //_tripsStorage.JsonSer();
                     break;
                 case 4:
                     _menuController.FindWaysForToday();
                     break;
                 case 5:
-                    _menuController.WaysForNextSevenDays();
+                    _menuController.FindWaysForNextSevenDays();
                     break;
                 case 6:
                     _menuController.FindCheapTickets();
                     break;
                 case 7:
                     _menuController.ShowFreeSeats();
-                    break;
+                    break;/*
                 case 8:
                     _menuController.AdminLogin();
                     break;*/
-
-            }            
+            }
+            _menuView.BackToMainMenu();
         }
     }
 }

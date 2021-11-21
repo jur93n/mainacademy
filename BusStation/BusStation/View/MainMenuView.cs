@@ -30,7 +30,7 @@ namespace BusStation.View
         public void ShowTripsTable(List<TripModel> trips)
         {
             Console.Clear();
-            Console.WriteLine("All Trips\n");
+            Console.WriteLine("Trips Table:\n");
             ShowTripsHeader();
             foreach (var oneTrip in trips)
             {
@@ -82,7 +82,7 @@ namespace BusStation.View
             InputWaysForTodayEvent?.Invoke(_date);
         }
 
-        public void WaysForNextSevenDays()
+        public void InputForNextSevenDays()
         {
             Console.Clear();
             Console.WriteLine("Find ways from 1 to 7 of january 2022\n");
@@ -90,7 +90,7 @@ namespace BusStation.View
             InputWaysForNextSevenDaysEvent?.Invoke(_date);
         }
         
-        public void FindCheapTickets()
+        public void InputPriceTickets()
         {
             Console.Clear();
             Console.WriteLine($"Find tickets for your price\n");

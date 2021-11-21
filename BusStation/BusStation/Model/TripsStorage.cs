@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using BusStation.Controller;
 using BusStation.View;
+using System.IO;
+using Newtonsoft.Json;
+
 namespace BusStation.Model
 {
     
@@ -23,6 +26,12 @@ namespace BusStation.Model
             new TripModel(9, new DateTime(2022,1,1), "Chernivtsi", new DateTime(2022,1,1), "Rivne", new BusModel("Isuzu", 0), 600 ),
             new TripModel(9, new DateTime(2022,1,9), "Odesa", new DateTime(2022,1,9), "Uzhhorod", new BusModel("Sprinter", 4), 800 )
         };
+
+        /*public void JsonSer()
+        {
+            string json = JsonConvert.SerializeObject(Trips);
+            Console.WriteLine(json);
+        }*/
 
         public TripModel FindTripById(List<TripModel> trips, int id)
         {            
@@ -68,7 +77,7 @@ namespace BusStation.Model
             var _date = date;
             foreach (var oneTrip in trips)
             {
-                if (oneTrip.DepartureTime <= _date)
+                if (_date >= oneTrip.DepartureTime)
                 {
                     return oneTrip;
                 }
@@ -76,14 +85,14 @@ namespace BusStation.Model
             return null;
         }
         
-        public TripModel FindCheapTickets(List<TripModel> trips, int price)
+        public TripsStorage FindCheapTickets(List<TripModel> trips, int price)
         {
             var _price = price;
             foreach (var oneTrip in trips)
             {
                 if (oneTrip.TicketPrice <= _price)
                 {
-                    return oneTrip;
+                    TripsStorage.Trips.Add(oneTrip);
                 }
             }
             return null;
