@@ -15,6 +15,7 @@ namespace BusStation.View
         public event Action<DateTime> InputWaysForNextSevenDaysEvent;
         public event Action<int> InputPriceEvent;
         public event Action FreeSeatsEvent;
+        public event Action<string> InputAdminPassEvent;
 
         public void ShowHeader()
         {
@@ -105,29 +106,25 @@ namespace BusStation.View
             Console.WriteLine("Show Buses with free seats\n");
             FreeSeatsEvent?.Invoke();
         }
-        /*
+
         public void AdminLogin()
         {
             Console.Clear();
-            var _realPass = "admin";
-            var _input = new InputComponent();
-            var _inputPass = _input.AdminPass();
-            var _adminController = new AdminController();
-            Console.WriteLine("Login to Admin Panel");            
-            if (_inputPass == _realPass)
-            {
-                Console.Clear();
-                Console.WriteLine("Welocome, Admin!\n");
-                Console.WriteLine("1 - Add new Trip by Id");
-                Console.WriteLine("2 - Remove Trip by Id");
-                _adminController.RunAdmin();
-            }
-            else
-            {
-                AdminLogin();
-                BackToMainMenu();
-            }
-        }*/        
+            Console.WriteLine("Your try to login in admin Panel\n");
+            Console.Write("Enter admin password: ");
+            var _pass = Console.ReadLine();
+            InputAdminPassEvent?.Invoke(_pass);
+        }
+
+        public void WrongAdminPass()
+        {
+            Console.Clear();
+            Console.WriteLine("ERROR! Wrong password try again\n");
+            Console.Write("Enter admin password: ");
+            var _pass = Console.ReadLine();
+            InputAdminPassEvent?.Invoke(_pass);
+        }
+               
         public void BackToMainMenu()
         {
             Console.Write("\nPress <Backspace> and back to Main Menu...");

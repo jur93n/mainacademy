@@ -14,12 +14,14 @@ namespace BusStation.Controller
         private readonly MainMenuController _menuController;
         private readonly TripsStorage _tripsStorage;
         private readonly MainMenuView _menuView;
+        private readonly AdminController _adminController;
 
         public MainController()
         {
             _input = new InputComponent();
             _menuController = new MainMenuController();
             _menuView = new MainMenuView();
+            _adminController = new AdminController();
         }
 
         public void Run()
@@ -49,10 +51,10 @@ namespace BusStation.Controller
                     break;
                 case 7:
                     _menuController.ShowFreeSeats();
-                    break;/*
+                    break;
                 case 8:
                     _menuController.AdminLogin();
-                    break;*/
+                    break;
             }
             _menuView.BackToMainMenu();
         }

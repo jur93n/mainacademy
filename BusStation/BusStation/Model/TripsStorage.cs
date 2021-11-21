@@ -115,6 +115,16 @@ namespace BusStation.Model
             return _freeSeatsTrips;
         }
 
+        public bool CheckPass(string pass)
+        {
+            string _pass = pass;
+            if (_pass == "admin")
+            {
+                return true;
+            }
+            return false;
+        }
+
         public void AddTrip(List<TripModel> trips)
         {
             var _input = new InputComponent();

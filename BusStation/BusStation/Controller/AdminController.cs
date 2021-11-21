@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BusStation.View;
+
 namespace BusStation.Controller
 {
     public class AdminController
     {
         private readonly InputComponent _input;
         private readonly AdminMenuController _adminMenuController;
+
         public AdminController()
         {
             _input = new InputComponent();

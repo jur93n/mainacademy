@@ -12,11 +12,13 @@ namespace BusStation.Controller
     {
         private MainMenuView _menuView;
         private TripsStorage _storageModel;
+        private AdminMenuController _adminMenuController;
 
         public MainMenuController()
         {
             _menuView = new MainMenuView();
             _storageModel = new TripsStorage();
+            _adminMenuController = new AdminMenuController();
         }
 
         private void UserInputId(int _id)        
@@ -101,12 +103,12 @@ namespace BusStation.Controller
             _menuView.FreeSeatsEvent += UserFreeSeats;
             _menuView.ShowFreeSeats();
         }
-
-        /*
+        
         public void AdminLogin()
         {
+            _menuView.InputAdminPassEvent += _adminMenuController.UserInputPass;
             _menuView.AdminLogin();
-            _menuView.BackToMainMenu();
-        }*/        
+            
+        }        
     }
 }
