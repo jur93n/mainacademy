@@ -46,68 +46,73 @@ namespace BusStation.Model
             return null;
         }
 
-        public TripModel FindTripByDest(List<TripModel> trips, string dest)
+        public List<TripModel> FindTripByDest(List<TripModel> trips, string dest)
         {
-            var _dest = dest;            
+            var _dest = dest;
+            var _destTrips = new List<TripModel>();
             foreach (var oneTrip in trips)
             {
                 if (oneTrip.TripTo.Contains(_dest))
                 {
-                    return oneTrip;
+                    _destTrips.Add(oneTrip);
                 }
             }
-            return null;
+            return _destTrips;
         }
 
-        public TripModel FindWaysForToday(List<TripModel> trips, DateTime date)
+        public List<TripModel> FindWaysForToday(List<TripModel> trips, DateTime date)
         {
-            var _date = date;            
+            var _date = date;
+            var _tripsToday = new List<TripModel>();
             foreach (var oneTrip in trips)
             {
                 if (_date == oneTrip.DepartureTime)
                 {
-                    return oneTrip;
+                    _tripsToday.Add(oneTrip);
                 }
             }
-            return null;
+            return _tripsToday;
         }
         
-        public TripModel FindWaysForNextSevenDays(List<TripModel> trips, DateTime date)
+        public List<TripModel> FindWaysForNextSevenDays(List<TripModel> trips, DateTime date)
         {
             var _date = date;
+            var _sevenDaysTrips = new List<TripModel>();
             foreach (var oneTrip in trips)
             {
-                if (_date >= oneTrip.DepartureTime)
+                if (oneTrip.DepartureTime <= _date)
                 {
-                    return oneTrip;
+                    _sevenDaysTrips.Add(oneTrip);
                 }
             }
-            return null;
+            return _sevenDaysTrips;
         }
         
-        public TripsStorage FindCheapTickets(List<TripModel> trips, int price)
+        public List<TripModel> FindCheapTickets(List<TripModel> trips, int price)
         {
             var _price = price;
+            var _cheapTrips = new List<TripModel>();
             foreach (var oneTrip in trips)
             {
                 if (oneTrip.TicketPrice <= _price)
                 {
-                    TripsStorage.Trips.Add(oneTrip);
-                }
+                    _cheapTrips.Add(oneTrip);                    
+                }                
             }
-            return null;
+            return _cheapTrips;
         }
         
-        public TripModel ShowFreeSeats(List<TripModel> trips)
+        public List<TripModel> ShowFreeSeats(List<TripModel> trips)
         {
+            var _freeSeatsTrips = new List<TripModel>();
             foreach (var oneTrip in trips)
             {
                 if (oneTrip.Bus.Capacity > 0)
                 {
-                    return oneTrip;
+                    _freeSeatsTrips.Add(oneTrip);
                 }
             }
-            return null;
+            return _freeSeatsTrips;
         }
 
         public void AddTrip(List<TripModel> trips)

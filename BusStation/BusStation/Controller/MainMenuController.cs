@@ -28,31 +28,31 @@ namespace BusStation.Controller
         private void UserInputDest(string _dest)
         {
             var myTrip = _storageModel.FindTripByDest(TripsStorage.Trips, _dest);
-            _menuView.ShowTripsTable(new List<TripModel> { myTrip });
+            _menuView.ShowTripsTable(myTrip);
         }
 
         private void UserInputWaysForToday(DateTime _date)
         {
             var myTrip = _storageModel.FindWaysForToday(TripsStorage.Trips, _date);
-            _menuView.ShowTripsTable(new List<TripModel> { myTrip });
+            _menuView.ShowTripsTable(myTrip);
         }
 
         private void UserInputWaysForNextDays(DateTime _date)
         {
             var myTrip = _storageModel.FindWaysForNextSevenDays(TripsStorage.Trips, _date);
-            _menuView.ShowTripsTable(new List<TripModel> { myTrip });
+            _menuView.ShowTripsTable(myTrip);
         }
 
         private void UserInputPrice(int _price)
         {
             var myTrip = _storageModel.FindCheapTickets(TripsStorage.Trips, _price);
-            _menuView.ShowTripsTable(new List<TripModel> { myTrip });
+            _menuView.ShowTripsTable(myTrip);
         }
 
         private void UserFreeSeats()
         {
             var myTrip = _storageModel.ShowFreeSeats(TripsStorage.Trips);
-            _menuView.ShowTripsTable(new List<TripModel> { myTrip });
+            _menuView.ShowTripsTable(myTrip);
         }
 
         public void ShowMainMenu()
