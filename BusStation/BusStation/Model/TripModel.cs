@@ -1,5 +1,5 @@
 using System;
-namespace BusStation
+namespace BusStation.Model
 {
     public class TripModel
     {

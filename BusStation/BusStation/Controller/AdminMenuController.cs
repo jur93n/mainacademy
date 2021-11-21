@@ -1,9 +1,12 @@
 ﻿using System;
-namespace BusStation
+using BusStation.View;
+using BusStation.Model;
+namespace BusStation.Controller
 {
     public class AdminMenuController
     {
         private AdminMenuView _adminMenuView;
+        private TripsStorage _storageModel;
         public AdminMenuController()
         {
             _adminMenuView = new AdminMenuView();
@@ -16,13 +19,13 @@ namespace BusStation
         }
         public void AddTrip()
         {
-            _adminMenuView.AddTrip(TripsStorage.Trips);
-            _adminMenuView.BackToAdminMenu();
+            _storageModel.AddTrip(TripsStorage.Trips);
+            _storageModel.BackToAdminMenu();
         }
         public void RemoveTrip()
         {
-            _adminMenuView.RemoveTrip(TripsStorage.Trips);
-            _adminMenuView.BackToAdminMenu();
+            _storageModel.RemoveTrip(TripsStorage.Trips);
+            _storageModel.BackToAdminMenu();
         }
     }
 }

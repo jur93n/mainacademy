@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace BusStation
+using BusStation.Model;
+namespace BusStation.View
 {
     public class InputComponent
     {
@@ -69,7 +70,8 @@ namespace BusStation
             string result;
             do
             {
-                Console.WriteLine("Enter Admin Password: ");
+                Console.WriteLine("Login to admin\n");
+                Console.Write("Enter Admin Password: ");
                 result = Console.ReadLine();
             } while (!true);
             return result;
@@ -80,33 +82,36 @@ namespace BusStation
             do
             {
                 Console.Clear();
-                Console.WriteLine("Enter Departure Time in format (yyyy, m, d): ");
+                var id = 11;
+                Console.Write("Enter Departure Time in format (yyyy, m, d): ");
                 var departureTime = DateTime.Parse(Console.ReadLine());
-                Console.WriteLine("Enter Departure City: ");
+                Console.Write("Enter Departure City: ");
                 var departureCity = Console.ReadLine();
-                Console.WriteLine("Enter Arrival Time in format (yyyy, m, d): ");
+                Console.Write("Enter Arrival Time in format (yyyy, m, d): ");
                 var arrivalTime = DateTime.Parse(Console.ReadLine());
-                Console.WriteLine("Enter Arrival City: ");
+                Console.Write("Enter Arrival City: ");
                 var arrivalCity = Console.ReadLine();
-                Console.WriteLine("Enter Bus Model in Format (Ikarus, 2): ");
-                BusModel busModel = new BusModel("ikarus", int.Parse(Console.ReadLine()));
-                Console.WriteLine("Enter Ticket price: ");
+                Console.Write("Enter Bus Model: ");
+                var busName = Console.ReadLine();
+                Console.Write("Enter bus Capacity: ");
+                var busCapacity = int.Parse(Console.ReadLine());
+                BusModel busModel = new BusModel(busName, busCapacity);
+                Console.Write("Enter Ticket price: ");
                 double ticketPrice = int.Parse(Console.ReadLine());
-                result = new TripModel(11, departureTime, departureCity, arrivalTime, arrivalCity, busModel, ticketPrice);
-            } while (!true);
-            
+                result = new TripModel(id, departureTime, departureCity, arrivalTime, arrivalCity, busModel, ticketPrice);
+                Console.WriteLine($"\nTrip № 11 with destination to {arrivalCity} from {departureCity} was added to list!");
+            } while (!true);            
             return result;
         }
         public int RemoveTrip()
         {
-            bool isParsed;
             int result;
             do
             {
-                Console.Write("Enter trip Id: ");
-                var userChoise = Console.ReadLine();
-                isParsed = int.TryParse(userChoise, out result);
-            } while (!isParsed);
+                Console.Write("Enter trip Id for Remove: ");
+                var userChoise = int.Parse(Console.ReadLine());                
+                result = userChoise;
+            } while (!true);
             return result;
         }
 
