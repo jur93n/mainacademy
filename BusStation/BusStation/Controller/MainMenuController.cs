@@ -30,7 +30,7 @@ namespace BusStation.Controller
         private void UserInputDest(string _dest)
         {
             var myTrip = _storageModel.FindTripByDest(TripsStorage.Trips, _dest);
-            _menuView.ShowTripsTable(myTrip);
+            _menuView.ShowTripsTable(myTrip.OrderBy(t => t.DepartureTime).ToList());
         }
 
         private void UserInputWaysForToday(DateTime _date)
@@ -42,7 +42,7 @@ namespace BusStation.Controller
         private void UserInputWaysForNextDays(DateTime _date)
         {
             var myTrip = _storageModel.FindWaysForNextSevenDays(TripsStorage.Trips, _date);
-            _menuView.ShowTripsTable(myTrip);
+            _menuView.ShowTripsTable(myTrip.OrderBy(t => t.DepartureTime).ToList());
         }
 
         private void UserInputPrice(int _price)

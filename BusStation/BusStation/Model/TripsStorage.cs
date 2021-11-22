@@ -27,11 +27,11 @@ namespace BusStation.Model
             new TripModel(10, new DateTime(2022,1,9), "Odesa", new DateTime(2022,1,9), "Uzhhorod", new BusModel("Sprinter", 4), 800 )
         };
 
-        public void JsonSer()
+        /*public void JsonSer()
         {
             string json = JsonConvert.SerializeObject(Trips);
             Console.WriteLine(json);
-        }
+        }*/
 
         public TripModel FindTripById(List<TripModel> trips, int id)
         {            
