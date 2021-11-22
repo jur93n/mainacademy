@@ -17,6 +17,7 @@ namespace BusStation.View
         public event Action FreeSeatsEvent;
         public event Action<string> InputAdminPassEvent;
         public event Action<TripModel> AddTripEvent;
+        public event Action<int> RemoveTripEvent;
 
         public int MenuInput()
         {
@@ -71,7 +72,16 @@ namespace BusStation.View
             Console.WriteLine("8 - Login to admin panel");
             Console.WriteLine("9 - Exit application");
         }
-        
+
+        public void AdminMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("Howdy, Admin!\n");
+            Console.WriteLine("Admin Menu\n");
+            Console.WriteLine("1 - Add Trip");
+            Console.WriteLine("2 - Remove Trip by ID");
+        }
+
         public void InputTripId()
         {
             Console.Clear();            
@@ -177,7 +187,11 @@ namespace BusStation.View
 
         public void RemoveTrip()
         {
-
+            Console.Clear();
+            Console.WriteLine("You want to remove trip?\n");
+            Console.Write("Please enter trip Id for delete: ");
+            var _inputId = int.Parse(Console.ReadLine());
+            RemoveTripEvent?.Invoke(_inputId);
         }
 
     }

@@ -1,1 +1,122 @@
-﻿
+﻿[
+  {
+    "Id": 1,
+    "DepartureTime": "2022-01-01T00:00:00",
+    "TripFrom": "Zhmerynka",
+    "ArrivalTime": "2022-01-02T00:00:00",
+    "TripTo": "Lviv",
+    "Bus": {
+      "Name": "Ikarus",
+      "Capacity": 8
+    },
+    "TicketPrice": 650.0
+  },
+  {
+    "Id": 2,
+    "DepartureTime": "2022-01-06T00:00:00",
+    "TripFrom": "Kyiv",
+    "ArrivalTime": "2022-01-07T00:00:00",
+    "TripTo": "Bukovel",
+    "Bus": {
+      "Name": "Isuzu",
+      "Capacity": 1
+    },
+    "TicketPrice": 1200.0
+  },
+  {
+    "Id": 3,
+    "DepartureTime": "2022-01-04T00:00:00",
+    "TripFrom": "Sumy",
+    "ArrivalTime": "2022-01-05T00:00:00",
+    "TripTo": "Ternopil",
+    "Bus": {
+      "Name": "LAZ",
+      "Capacity": 10
+    },
+    "TicketPrice": 1000.0
+  },
+  {
+    "Id": 4,
+    "DepartureTime": "2022-01-04T00:00:00",
+    "TripFrom": "Vinnytsya",
+    "ArrivalTime": "2022-01-05T00:00:00",
+    "TripTo": "Kharkiv",
+    "Bus": {
+      "Name": "Ikarus",
+      "Capacity": 9
+    },
+    "TicketPrice": 1200.0
+  },
+  {
+    "Id": 5,
+    "DepartureTime": "2022-01-05T00:00:00",
+    "TripFrom": "Zaporizhya",
+    "ArrivalTime": "2022-01-07T00:00:00",
+    "TripTo": "Odesa",
+    "Bus": {
+      "Name": "Bohdan",
+      "Capacity": 7
+    },
+    "TicketPrice": 500.0
+  },
+  {
+    "Id": 6,
+    "DepartureTime": "2022-01-09T00:00:00",
+    "TripFrom": "Zhytomyr",
+    "ArrivalTime": "2022-01-09T00:00:00",
+    "TripTo": "Poltava",
+    "Bus": {
+      "Name": "Sprinter",
+      "Capacity": 0
+    },
+    "TicketPrice": 600.0
+  },
+  {
+    "Id": 7,
+    "DepartureTime": "2022-01-07T00:00:00",
+    "TripFrom": "Kyiv",
+    "ArrivalTime": "2022-01-08T00:00:00",
+    "TripTo": "Yaremche",
+    "Bus": {
+      "Name": "LAZ",
+      "Capacity": 6
+    },
+    "TicketPrice": 1000.0
+  },
+  {
+    "Id": 8,
+    "DepartureTime": "2022-01-02T00:00:00",
+    "TripFrom": "Vinnytsya",
+    "ArrivalTime": "2022-01-02T00:00:00",
+    "TripTo": "Lviv",
+    "Bus": {
+      "Name": "Bohdan",
+      "Capacity": 13
+    },
+    "TicketPrice": 700.0
+  },
+  {
+    "Id": 9,
+    "DepartureTime": "2022-01-01T00:00:00",
+    "TripFrom": "Chernivtsi",
+    "ArrivalTime": "2022-01-01T00:00:00",
+    "TripTo": "Rivne",
+    "Bus": {
+      "Name": "Isuzu",
+      "Capacity": 0
+    },
+    "TicketPrice": 600.0
+  },
+  {
+    "Id": 10,
+    "DepartureTime": "2022-01-09T00:00:00",
+    "TripFrom": "Odesa",
+    "ArrivalTime": "2022-01-09T00:00:00",
+    "TripTo": "Uzhhorod",
+    "Bus": {
+      "Name": "Sprinter",
+      "Capacity": 4
+    },
+    "TicketPrice": 800.0
+  }
+]

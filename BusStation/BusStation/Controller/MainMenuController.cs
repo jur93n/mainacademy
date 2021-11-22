@@ -64,8 +64,9 @@ namespace BusStation.Controller
         }
 
         public void ShowTripsTable()
-        {            
-            _menuView.ShowTripsTable(TripsStorage.Trips);            
+        {
+            //_menuView.ShowTripsTable(TripsStorage.Trips);
+            _menuView.ShowTripsTable(TripsStorage.Trips.OrderBy(t => t.DepartureTime).ToList());
         }
 
         public void FindTripById()

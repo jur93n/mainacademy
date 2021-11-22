@@ -24,14 +24,14 @@ namespace BusStation.Model
             new TripModel(7, new DateTime(2022,1,7), "Kyiv", new DateTime(2022,1,8), "Yaremche", new BusModel("LAZ", 6), 1000),
             new TripModel(8, new DateTime(2022,1,2), "Vinnytsya", new DateTime(2022,1,2), "Lviv", new BusModel("Bohdan", 13), 700 ),
             new TripModel(9, new DateTime(2022,1,1), "Chernivtsi", new DateTime(2022,1,1), "Rivne", new BusModel("Isuzu", 0), 600 ),
-            new TripModel(9, new DateTime(2022,1,9), "Odesa", new DateTime(2022,1,9), "Uzhhorod", new BusModel("Sprinter", 4), 800 )
+            new TripModel(10, new DateTime(2022,1,9), "Odesa", new DateTime(2022,1,9), "Uzhhorod", new BusModel("Sprinter", 4), 800 )
         };
 
-        /*public void JsonSer()
+        public void JsonSer()
         {
             string json = JsonConvert.SerializeObject(Trips);
             Console.WriteLine(json);
-        }*/
+        }
 
         public TripModel FindTripById(List<TripModel> trips, int id)
         {            
@@ -127,40 +127,20 @@ namespace BusStation.Model
 
         public void AddTrip(List<TripModel> trips, TripModel newTrip)
         {
-            //var _addTrip = _input.AddTrip();
             trips.Add(newTrip);
         }
 
-        public void RemoveTrip(List<TripModel> trips)
+        public void RemoveTrip(List<TripModel> trips, int id)
         {
-            Console.Clear();
-            var _input = new InputComponent();
-            var _id = _input.RemoveTrip();
+            var _id = id;
             foreach (var oneTrip in trips)
             {
                 if (oneTrip.Id.Equals(_id))
                 {
-                    Console.WriteLine($"\nTrip № {oneTrip.Id} with destination to {oneTrip.TripTo} from {oneTrip.TripFrom} was deleted!");
-                    TripsStorage.Trips.Remove(oneTrip);
-                    break;
+                   Trips.Remove(oneTrip);
+                   break; 
                 }
             }
-        }
-
-        public void BackToAdminMenu()
-        {
-            Console.Write("\nPress <Backspace> and back to Admin Menu...");
-            while (Console.ReadKey().Key != ConsoleKey.Backspace) { }
-            AdminMenuController adminMenuController = new AdminMenuController();
-            adminMenuController.ShowAdminMenu();
-        }
-
-        public void BackToMainMenu()
-        {
-            Console.Write("\nPress <Backspace> and back to Main Menu...");
-            while (Console.ReadKey().Key != ConsoleKey.Backspace) { }
-            MainController mainController = new MainController();
-            mainController.Run();
         }
     }
 }

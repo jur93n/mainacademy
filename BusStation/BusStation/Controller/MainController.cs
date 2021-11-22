@@ -11,15 +11,14 @@ namespace BusStation.Controller
     public class MainController
     {
         private readonly MainMenuController _menuController;
-        //private readonly TripsStorage _tripsStorage;
         private readonly MainMenuView _menuView;
-        private readonly AdminController _adminController;
+        //private readonly TripsStorage _tripsStorage;
 
         public MainController()
         {
             _menuController = new MainMenuController();
             _menuView = new MainMenuView();
-            _adminController = new AdminController();
+            //_tripsStorage = new TripsStorage();
         }
 
         public void Run()

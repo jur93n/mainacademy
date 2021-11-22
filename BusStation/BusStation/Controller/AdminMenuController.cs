@@ -5,17 +5,13 @@ namespace BusStation.Controller
 {
     public class AdminMenuController
     {
-        private AdminMenuView _adminMenuView;
         private TripsStorage _storageModel;
         private MainMenuView _menuView;
-        //private AdminController _adminController;
 
         public AdminMenuController()
         {
-            _adminMenuView = new AdminMenuView();
             _storageModel = new TripsStorage();
             _menuView = new MainMenuView();
-           // _adminController = new AdminController();
         }
 
         public void UserInputPass(string _pass)
@@ -34,31 +30,35 @@ namespace BusStation.Controller
         public void ShowAdminMenu()
         {
             _menuView.InputAdminPassEvent += UserInputPass;            
-            _adminMenuView.AdminMenu();            
+            _menuView.AdminMenu();            
         }
 
         public void UserAddTrip(TripModel _result)
         {
             _storageModel.AddTrip(TripsStorage.Trips, _result);
+        }
 
+        public void UserRemoveTrip(int _id)
+        {
+            _storageModel.RemoveTrip(TripsStorage.Trips, _id);
         }
 
         public void AddTrip()
         {
             _menuView.AddTripEvent += UserAddTrip;
             _menuView.AddTrip();
-            _storageModel.BackToAdminMenu();
-        }
+            
+        }        
 
         public void RemoveTrip()
         {
-            _storageModel.RemoveTrip(TripsStorage.Trips);
-            _storageModel.BackToAdminMenu();
+            _menuView.RemoveTripEvent += UserRemoveTrip;
+            _menuView.RemoveTrip();
         }
 
         public void RunAdmin()
         {
-            _adminMenuView.AdminMenu();
+            _menuView.AdminMenu();
             var result = _menuView.MenuInput();
             switch (result)
             {
