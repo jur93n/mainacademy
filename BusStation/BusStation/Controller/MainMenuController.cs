@@ -48,13 +48,13 @@ namespace BusStation.Controller
         private void UserInputPrice(int _price)
         {
             var myTrip = _storageModel.FindCheapTickets(TripsStorage.Trips, _price);
-            _menuView.ShowTripsTable(myTrip);
+            _menuView.ShowTripsTable(myTrip.OrderBy(t => t.DepartureTime).ToList());
         }
 
         private void UserFreeSeats()
         {
             var myTrip = _storageModel.ShowFreeSeats(TripsStorage.Trips);
-            _menuView.ShowTripsTable(myTrip);
+            _menuView.ShowTripsTable(myTrip.OrderBy(t => t.DepartureTime).ToList());
         }
 
         public void ShowMainMenu()
@@ -65,7 +65,6 @@ namespace BusStation.Controller
 
         public void ShowTripsTable()
         {
-            //_menuView.ShowTripsTable(TripsStorage.Trips);
             _menuView.ShowTripsTable(TripsStorage.Trips.OrderBy(t => t.DepartureTime).ToList());
         }
 
@@ -108,8 +107,7 @@ namespace BusStation.Controller
         public void AdminLogin()
         {
             _menuView.InputAdminPassEvent += _adminMenuController.UserInputPass;
-            _menuView.AdminLogin();
-            
+            _menuView.AdminLogin();            
         }        
     }
 }
