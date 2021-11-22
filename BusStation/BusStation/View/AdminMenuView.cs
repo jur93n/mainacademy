@@ -24,7 +24,6 @@ namespace BusStation.View
             Console.WriteLine("Admin Menu\n");
             Console.WriteLine("1 - Add Trip");
             Console.WriteLine("2 - Remove Trip by ID");
-            _mainMenuView.MenuInput();
         }
     }
 }
