@@ -10,10 +10,11 @@ namespace BusStation.View
 {
     public class AdminMenuView
     {
-        
-        public void AdminHeader()
+        private MainMenuView _mainMenuView;
+
+        public AdminMenuView()
         {
-            
+            _mainMenuView = new MainMenuView();
         }
 
         public void AdminMenu()
@@ -22,16 +23,8 @@ namespace BusStation.View
             Console.WriteLine("Howdy, Admin!\n");
             Console.WriteLine("Admin Menu\n");
             Console.WriteLine("1 - Add Trip");
-            Console.WriteLine("2 - Remove Trip by ID");            
-        }
-
-        public void ShowAdminPanel(bool truePass)
-        {
-            var _truePass = truePass;
-            if (_truePass == true)
-            {
-
-            }
+            Console.WriteLine("2 - Remove Trip by ID");
+            _mainMenuView.MenuInput();
         }
     }
 }

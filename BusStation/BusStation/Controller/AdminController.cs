@@ -8,19 +8,22 @@ using BusStation.View;
 namespace BusStation.Controller
 {
     public class AdminController
-    {
-        private readonly InputComponent _input;
-        private readonly AdminMenuController _adminMenuController;
+    {        
+        private AdminMenuController _adminMenuController;
+        private MainMenuView _mainMenuView;
+        private AdminMenuView _adminMenuView;
 
         public AdminController()
         {
-            _input = new InputComponent();
+            _adminMenuView = new AdminMenuView();
             _adminMenuController = new AdminMenuController();
+            _mainMenuView = new MainMenuView();
         }
+
         public void RunAdmin()
         {
-            _adminMenuController.ShowAdminMenu();
-            var result = _input.GetInputInt();
+            _adminMenuView.AdminMenu();
+            var result = _mainMenuView.MenuInput();
             switch (result)
             {
                 case 1:
@@ -29,8 +32,6 @@ namespace BusStation.Controller
                 case 2:
                     _adminMenuController.RemoveTrip();
                     break;
-
-
             }
         }
     }

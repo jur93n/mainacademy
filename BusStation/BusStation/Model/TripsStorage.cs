@@ -125,11 +125,10 @@ namespace BusStation.Model
             return false;
         }
 
-        public void AddTrip(List<TripModel> trips)
+        public void AddTrip(List<TripModel> trips, TripModel newTrip)
         {
-            var _input = new InputComponent();
-            var _addTrip = _input.AddTrip();
-            trips.Add(_addTrip);
+            //var _addTrip = _input.AddTrip();
+            trips.Add(newTrip);
         }
 
         public void RemoveTrip(List<TripModel> trips)

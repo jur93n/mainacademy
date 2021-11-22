@@ -10,15 +10,13 @@ namespace BusStation.Controller
 {
     public class MainController
     {
-        private readonly InputComponent _input;
         private readonly MainMenuController _menuController;
-        private readonly TripsStorage _tripsStorage;
+        //private readonly TripsStorage _tripsStorage;
         private readonly MainMenuView _menuView;
         private readonly AdminController _adminController;
 
         public MainController()
         {
-            _input = new InputComponent();
             _menuController = new MainMenuController();
             _menuView = new MainMenuView();
             _adminController = new AdminController();
@@ -27,7 +25,7 @@ namespace BusStation.Controller
         public void Run()
         {            
             _menuController.ShowMainMenu();
-            var result = _input.GetInputInt();
+            var result = _menuView.MenuInput();
             switch (result)
             {
                 case 1:

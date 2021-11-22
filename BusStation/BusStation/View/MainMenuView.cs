@@ -16,6 +16,21 @@ namespace BusStation.View
         public event Action<int> InputPriceEvent;
         public event Action FreeSeatsEvent;
         public event Action<string> InputAdminPassEvent;
+        public event Action<TripModel> AddTripEvent;
+
+        public int MenuInput()
+        {
+            bool isParsed;
+            int result;
+            do
+            {
+                Console.Write("\nEnter integer, and press Enter: ");
+                var userChoise = Console.ReadLine();
+                isParsed = int.TryParse(userChoise, out result);
+            }
+            while (!isParsed);
+            return result;
+        }
 
         public void ShowHeader()
         {
@@ -131,5 +146,39 @@ namespace BusStation.View
             while (Console.ReadKey().Key != ConsoleKey.Backspace) { }
 
         }
+
+        public void AddTrip()
+        {
+            TripModel _result;
+            do
+            {
+                Console.Clear();
+                var id = 11;
+                Console.Write("Enter Departure Time in format (yyyy, m, d): ");
+                var departureTime = DateTime.Parse(Console.ReadLine());
+                Console.Write("Enter Departure City: ");
+                var departureCity = Console.ReadLine();
+                Console.Write("Enter Arrival Time in format (yyyy, m, d): ");
+                var arrivalTime = DateTime.Parse(Console.ReadLine());
+                Console.Write("Enter Arrival City: ");
+                var arrivalCity = Console.ReadLine();
+                Console.Write("Enter Bus Model: ");
+                var busName = Console.ReadLine();
+                Console.Write("Enter bus Capacity: ");
+                var busCapacity = int.Parse(Console.ReadLine());
+                BusModel busModel = new BusModel(busName, busCapacity);
+                Console.Write("Enter Ticket price: ");
+                double ticketPrice = int.Parse(Console.ReadLine());
+                _result = new TripModel(id, departureTime, departureCity, arrivalTime, arrivalCity, busModel, ticketPrice);
+                AddTripEvent?.Invoke(_result);
+                Console.WriteLine($"\nTrip № 11 with destination to {arrivalCity} from {departureCity} was added to list!");
+            } while (!true);            
+        }
+
+        public void RemoveTrip()
+        {
+
+        }
+
     }
 }
