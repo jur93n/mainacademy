@@ -39,9 +39,8 @@ namespace BusStation.View
             bool isParsed;
             do
             {
-                int _userInput;
-                Console.Write("\nEnter integer, and press Enter: ");                
-                isParsed = int.TryParse(Console.ReadLine(), out _userInput);
+                Console.Write("\nEnter integer, and press Enter: ");
+                isParsed = int.TryParse(Console.ReadLine(), out int _userInput);
                 if (_userInput > 0 && _userInput < 9)
                 {
                     return _userInput;
@@ -62,15 +61,14 @@ namespace BusStation.View
             do
             {
                 Console.Write("\nEnter integer, and press Enter: ");
-                int _userInput;
-                isParsed = int.TryParse(Console.ReadLine(), out _userInput);
+                isParsed = int.TryParse(Console.ReadLine(), out int _userInput);
                 if (_userInput > 0 && _userInput < 3)
                 {
                     return _userInput;
                 }
                 else
                 {
-                    Console.WriteLine("\nERROR! Wrong input, try again.\n");
+                    Console.WriteLine("\nERROR! Wrong input, try again.");
                 }
                 userInput = _userInput;
             } while (!isParsed || userInput <= 0 || userInput > 2);
@@ -107,7 +105,7 @@ namespace BusStation.View
             {
                 Console.Clear();
                 Console.WriteLine("Trips Table:\n");
-                Console.WriteLine("ERROR INPUT! Come back to main menu and try again.");
+                Console.WriteLine("ERROR INPUT! Back to main menu and try again.");
             }
         }
 

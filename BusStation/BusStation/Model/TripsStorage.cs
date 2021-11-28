@@ -7,14 +7,16 @@ using BusStation.Controller;
 using BusStation.View;
 using System.IO;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace BusStation.Model
 {
-    
+
     public class TripsStorage
-    {        
-        public static List <TripModel> Trips = new List <TripModel>
-        { 
+    {
+        /*
+        public static List<TripModel> Trips = new List<TripModel>
+        {
             new TripModel(1, new DateTime(2022,1,1), "Zhmerynka", new DateTime(2022,1,2), "Lviv", new BusModel("Ikarus", 8), 650 ),
             new TripModel(2, new DateTime(2022,1,6), "Kyiv", new DateTime(2022,1,7), "Bukovel", new BusModel("Isuzu", 1), 1200),
             new TripModel(3, new DateTime(2022,1,4), "Sumy", new DateTime(2022,1,5), "Ternopil", new BusModel("LAZ", 10), 1000),
@@ -26,12 +28,10 @@ namespace BusStation.Model
             new TripModel(9, new DateTime(2022,1,1), "Chernivtsi", new DateTime(2022,1,1), "Rivne", new BusModel("Isuzu", 0), 600 ),
             new TripModel(10, new DateTime(2022,1,9), "Odesa", new DateTime(2022,1,9), "Uzhhorod", new BusModel("Sprinter", 4), 800 )
         };
+        */
 
-        /*public void JsonSer()
-        {
-            string json = JsonConvert.SerializeObject(Trips);
-            Console.WriteLine(json);
-        }*/
+        static string jsonFile = @"\Model\TripsBase.json";                                             //хз шо тут не так, граюсь вже 3 години..
+        public static List<TripModel> Trips = JsonConvert.DeserializeObject<List<TripModel>>(jsonFile);//ловлю ексепшн type
 
         public TripModel FindTripById(List<TripModel> trips, int id)
         {            

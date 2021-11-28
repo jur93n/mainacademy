@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BusStation.View;
 using BusStation.Model;
+using Newtonsoft.Json.Linq;
 
 namespace BusStation.Controller
 {
@@ -57,10 +58,10 @@ namespace BusStation.Controller
             _menuView.ShowTripsTable(myTrip.OrderBy(t => t.DepartureTime).ToList());
         }
 
-        private void UserApplicationExit()
+        /*private void UserApplicationExit()
         {
             _menuView.ApplicationExit();
-        }
+        }*/
 
         public void ShowMainMenu()
         {            
@@ -117,7 +118,6 @@ namespace BusStation.Controller
 
         public void ApplicationExit()
         {
-            //_menuView.ApplicationExitEvent += UserApplicationExit;
             _menuView.ApplicationExit();
         }
     }
