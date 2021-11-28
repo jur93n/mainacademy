@@ -52,6 +52,9 @@ namespace BusStation.Controller
                 case 8:
                     _menuController.AdminLogin();
                     break;
+                case 9:
+                    _menuController.ApplicationExit();
+                    break;
             }
             _menuView.BackToMainMenu();
         }

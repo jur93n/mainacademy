@@ -57,6 +57,11 @@ namespace BusStation.Controller
             _menuView.ShowTripsTable(myTrip.OrderBy(t => t.DepartureTime).ToList());
         }
 
+        private void UserApplicationExit()
+        {
+            _menuView.ApplicationExit();
+        }
+
         public void ShowMainMenu()
         {            
             _menuView.ShowHeader();
@@ -108,6 +113,12 @@ namespace BusStation.Controller
         {
             _menuView.InputAdminPassEvent += _adminMenuController.UserInputPass;
             _menuView.AdminLogin();            
-        }        
+        }
+
+        public void ApplicationExit()
+        {
+            //_menuView.ApplicationExitEvent += UserApplicationExit;
+            _menuView.ApplicationExit();
+        }
     }
 }

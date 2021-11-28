@@ -59,7 +59,7 @@ namespace BusStation.Controller
         public void RunAdmin()
         {
             _menuView.AdminMenu();
-            var result = _menuView.MenuInput();
+            var result = _menuView.AdminMenuInput();
             switch (result)
             {
                 case 1:

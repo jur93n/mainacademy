@@ -19,7 +19,7 @@ namespace BusStation.View
         public event Action<TripModel> AddTripEvent;
         public event Action<int> RemoveTripEvent;
 
-        public int MenuInput()
+        /*public int MenuInput()
         {
             bool isParsed;
             int result;
@@ -31,6 +31,50 @@ namespace BusStation.View
             }
             while (!isParsed);
             return result;
+        }*/
+
+        public int MenuInput()
+        {
+            int userInput;
+            bool isParsed;
+            do
+            {
+                int _userInput;
+                Console.Write("\nEnter integer, and press Enter: ");                
+                isParsed = int.TryParse(Console.ReadLine(), out _userInput);
+                if (_userInput > 0 && _userInput < 9)
+                {
+                    return _userInput;
+                }
+                else
+                {
+                    Console.WriteLine("\nERROR! Wrong input, try again.");
+                }
+                userInput = _userInput;
+            } while (!isParsed || userInput <= 0 || userInput > 9);
+            return userInput;
+        }
+
+        public int AdminMenuInput()
+        {
+            bool isParsed;
+            int userInput;
+            do
+            {
+                Console.Write("\nEnter integer, and press Enter: ");
+                int _userInput;
+                isParsed = int.TryParse(Console.ReadLine(), out _userInput);
+                if (_userInput > 0 && _userInput < 3)
+                {
+                    return _userInput;
+                }
+                else
+                {
+                    Console.WriteLine("\nERROR! Wrong input, try again.\n");
+                }
+                userInput = _userInput;
+            } while (!isParsed || userInput <= 0 || userInput > 2);
+            return userInput;
         }
 
         public void ShowHeader()
@@ -49,12 +93,21 @@ namespace BusStation.View
             Console.Clear();
             Console.WriteLine("Trips Table:\n");
             ShowTripsHeader();
-            foreach (var oneTrip in trips)
+            try
             {
-                Console.WriteLine("{0, -3} {1, -10} {2, -15} {3, -10} {4, -15} {5, -10} {6, -10} {7, -5}",
-                                 $"{oneTrip.Id}", $"{oneTrip.DepartureTime.ToShortDateString()}", $"{oneTrip.TripFrom}",
-                                 $"{oneTrip.TripTo}", $"{oneTrip.ArrivalTime.ToShortDateString()}", $"{oneTrip.Bus.Name}",
-                                 $"({oneTrip.Bus.Capacity})", $"{oneTrip.TicketPrice}");
+                foreach (var oneTrip in trips)
+                {
+                    Console.WriteLine("{0, -3} {1, -10} {2, -15} {3, -10} {4, -15} {5, -10} {6, -10} {7, -5}",
+                                     $"{oneTrip.Id}", $"{oneTrip.DepartureTime.ToShortDateString()}", $"{oneTrip.TripFrom}",
+                                     $"{oneTrip.TripTo}", $"{oneTrip.ArrivalTime.ToShortDateString()}", $"{oneTrip.Bus.Name}",
+                                     $"({oneTrip.Bus.Capacity})", $"{oneTrip.TicketPrice}");
+                }
+            }
+            catch
+            {
+                Console.Clear();
+                Console.WriteLine("Trips Table:\n");
+                Console.WriteLine("ERROR INPUT! Come back to main menu and try again.");
             }
         }
 
@@ -154,7 +207,6 @@ namespace BusStation.View
         {
             Console.Write("\nPress <Backspace> and back to Main Menu...");
             while (Console.ReadKey().Key != ConsoleKey.Backspace) { }
-
         }
 
         public void AddTrip()
@@ -192,6 +244,31 @@ namespace BusStation.View
             Console.Write("Please enter trip Id for delete: ");
             var _inputId = int.Parse(Console.ReadLine());
             RemoveTripEvent?.Invoke(_inputId);
+        }
+
+        public void ApplicationExit()
+        {
+            Console.Clear();
+            Console.WriteLine("Are you shure?\n");
+            string userInput;                
+            do
+            {
+                Console.Write("Input 'Y' to exit application or 'N' to back in main menu: ");
+                var _userInput = Console.ReadLine();
+                if (_userInput == "y" || _userInput == "Y")
+                {
+                    Environment.Exit(0);
+                }
+                if (_userInput == "n" || _userInput == "N")
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("\nERROR! Input 'Y' or 'N'\n");
+                }
+                userInput = _userInput;
+            } while (!true || userInput != "y" || userInput != "n" || userInput != "Y" || userInput != "N");            
         }
 
     }
