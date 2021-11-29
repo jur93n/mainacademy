@@ -23,6 +23,7 @@ namespace BusStation.Controller
             }
             else
             {
+                _menuView.InputAdminPassAgainEvent += UserInputPass;
                 _menuView.WrongAdminPass();
             }
         }
@@ -30,7 +31,7 @@ namespace BusStation.Controller
         public void ShowAdminMenu()
         {
             _menuView.InputAdminPassEvent += UserInputPass;            
-            _menuView.AdminMenu();            
+            _menuView.AdminMenu();           
         }
 
         public void UserAddTrip(TripModel _result)

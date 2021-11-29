@@ -16,22 +16,9 @@ namespace BusStation.View
         public event Action<int> InputPriceEvent;
         public event Action FreeSeatsEvent;
         public event Action<string> InputAdminPassEvent;
+        public event Action<string> InputAdminPassAgainEvent;
         public event Action<TripModel> AddTripEvent;
         public event Action<int> RemoveTripEvent;
-
-        /*public int MenuInput()
-        {
-            bool isParsed;
-            int result;
-            do
-            {
-                Console.Write("\nEnter integer, and press Enter: ");
-                var userChoise = Console.ReadLine();
-                isParsed = int.TryParse(userChoise, out result);
-            }
-            while (!isParsed);
-            return result;
-        }*/
 
         public int MenuInput()
         {
@@ -138,7 +125,7 @@ namespace BusStation.View
             Console.Clear();            
             Console.WriteLine("Find trip by Id\n");
             Console.Write("Input integer: ");
-            var _id = int.Parse(Console.ReadLine());
+            var isParsed = int.TryParse(Console.ReadLine(), out int _id);
             InputIdEvent?.Invoke(_id);            
         }
 
@@ -198,7 +185,7 @@ namespace BusStation.View
             Console.WriteLine("ERROR! Wrong password try again\n");
             Console.Write("Enter admin password: ");
             var _pass = Console.ReadLine();
-            InputAdminPassEvent?.Invoke(_pass);
+            InputAdminPassAgainEvent?.Invoke(_pass);
         }
                
         public void BackToMainMenu()

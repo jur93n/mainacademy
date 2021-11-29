@@ -12,13 +12,11 @@ namespace BusStation.Controller
     {
         private readonly MainMenuController _menuController;
         private readonly MainMenuView _menuView;
-        //private readonly TripsStorage _tripsStorage;
 
         public MainController()
         {
             _menuController = new MainMenuController();
             _menuView = new MainMenuView();
-            //_tripsStorage = new TripsStorage();
         }
 
         public void Run()
@@ -35,7 +33,6 @@ namespace BusStation.Controller
                     break;
                 case 3:
                     _menuController.FindTripByDest();
-                    //_tripsStorage.JsonSer();
                     break;
                 case 4:
                     _menuController.FindWaysForToday();
